@@ -1,2 +1,13 @@
-<h1> Daftar Member </h1>
-<p>Sistem Informasi Perpusatakaan</p>
+@extends('layouts.app')
+
+@section('content')
+
+    <h1>{{ $title }}</h1>
+
+    <ul>
+        @foreach ($members as $member)
+            <li>{{ $member }}</li>
+        @endforeach
+    </ul>
+
+@endsection
