@@ -7,12 +7,18 @@
     @if (count($books) > 0)
 
         <ul>
-            @foreach ($books as $book)
+            <!-- @foreach ($books as $book)
                 <li>
                 {{ $book['title'] }} - 
                 {{ $book['author'] }} -
                 {{ $book['year'] }}
                 </li>
+            @endforeach -->
+            @foreach ($books as $book)
+            <h3>{{ $book->title }}</h3>
+            <p>Penulis: {{ $book->author }}</p>
+            <p>Tahun: {{ $book->year }}</p>
+            <p>Stok: {{ $book->stock }}</p>
             @endforeach
         </ul>
 
