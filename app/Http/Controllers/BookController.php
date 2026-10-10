@@ -63,4 +63,46 @@ class BookController extends Controller
     {
         return view('book.show', compact('id'));
     }
+
+    public function create()
+    {
+        return view('book.create');
+    }
+
+    public function store(Request $request)
+    {
+        
+         Book::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'year' => $request->year,
+            'stock' => $request->stock,
+        ]);
+
+        return redirect()->route('books.index');
+    }
+
+    public function edit(Book $book)
+    {
+        return view('book.edit', compact('book'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        $book->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'year' => $request->year,
+            'stock' => $request->stock,
+        ]);
+
+        return redirect()->route('books.index');
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return redirect()->route('books.index');
+    }
 }

@@ -4,6 +4,9 @@
 
     <h1>{{ $title }}</h1>
 
+    <a href="{{ route('books.create') }}">Tambah Buku</a>
+    <br><br>
+
     @if (count($books) > 0)
 
         <ul>
@@ -19,6 +22,16 @@
             <p>Penulis: {{ $book->author }}</p>
             <p>Tahun: {{ $book->year }}</p>
             <p>Stok: {{ $book->stock }}</p>
+
+            <p>
+            <a href="{{ route('books.edit', $book) }}">Edit</a>
+            <form action="{{ route('books.destroy', $book) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Hapus</button>
+            </form> 
+            </p>
+            <hr>
             @endforeach
         </ul>
 
