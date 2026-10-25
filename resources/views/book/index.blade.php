@@ -22,7 +22,7 @@
                 </li>
             @endforeach -->
             @foreach ($books as $book)
-            <h3>{{ $book->title }}</h3>
+            <h3>{{ $book->title }}<small>({{ $book->category?->name ?? 'Belum ada Kategori' }})</small></h3>
             <p>Penulis: {{ $book->author }}</p>
             <p>Tahun: {{ $book->year }}</p>
             <p>Stok: {{ $book->stock }}</p>

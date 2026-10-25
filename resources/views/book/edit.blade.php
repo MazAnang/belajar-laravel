@@ -57,6 +57,22 @@
         @enderror
         </div><br>
 
+        <div>
+            <label>Kategori:</label><br>
+            <select name="category_id">
+                @foreach ($categories as $category)
+                    <option 
+                        value="{{ $category->id }}" 
+                        @selected(old('category_id', $book->category_id) == $category->id)
+                        >
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+        @error('category_id')
+            <p>{{ $message }}</p>
+        @enderror
+        </div><br>
         <button type="submit">Update Data</button>
     </form>
 </body>
