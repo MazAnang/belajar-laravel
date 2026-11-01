@@ -12,6 +12,12 @@
         <a href="/categories">Kategori</a> |
         <a href="/members">Member</a> 
         
+        <form action="{{ route('logout') }}" method="POST">
+        @csrf
+
+        <button type="submit" onclick="alert('<?php echo 'Anda telah logout!'; ?>')">Logout</button>
+        </form>
+
     </nav>
 
     <hr>

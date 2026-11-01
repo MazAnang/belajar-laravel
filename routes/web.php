@@ -5,17 +5,28 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showlogin'])
+    ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.submit');
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/',function () {
+        return view('welcome');
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/books', function () {
-//  //return 'Daftar Buku';
-//     return view('book.index');
-// });
-
-// Route::get('/books', [BookController::class, 'index']);
-// Route::get('/books/{id}', [BookController::class, 'show']);
 
 Route::resource('/books', BookController::class);
 
@@ -25,3 +36,4 @@ Route::get('/members', [MemberController::class, 'index']);
 Route::get('/members/{id}', [MemberController::class, 'show']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+});
