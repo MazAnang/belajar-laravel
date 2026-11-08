@@ -11,6 +11,9 @@
         <a href="/books">Buku</a> |
         <a href="/categories">Kategori</a> |
         <a href="/members">Member</a> 
+        @can('manage-users')
+        | <a href="/users">User</a> 
+        @endcan
         
         <form action="{{ route('logout') }}" method="POST">
         @csrf
